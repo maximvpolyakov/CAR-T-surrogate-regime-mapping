@@ -1,0 +1,98 @@
+pde:
+  formulation: normalised
+  backend:
+    auto_build: true
+    threads: 0
+    store_trajectories: true
+  grid:
+    nx: 60
+    ny: 60
+    nz: 60
+    Lx: 1.0
+    Ly: 1.0
+    Lz: 1.0
+  time:
+    horizon: 30.0
+    dt: 0.01
+    trajectory_every: 10
+  numerics:
+    exp_substeps: 1
+    diff_iters: 60
+    diff_tol: 1.0e-08
+  parameters:
+    D_C: 0.014
+    D_T: 5.0e-05
+    D_E: 0.001
+    D_S: 0.0045
+    D_A: 0.02
+    D_H: 1.5
+    rho_C: 5.0
+    r_T: 0.05
+    delta_CT: 0.3
+    gamma: 30.0
+    d_C: 0.03
+    k_e0: 0.03
+    K_C: 0.4166666667
+    sigma_S: 0.56
+    lambda_S: 0.56
+    sigma_A: 2.0
+    sigma_M: 0.3
+    lambda_A: 0.75
+    eta: 2.0
+    lambda_H: 0.43
+    chi_0: 0.1
+    p_r: 0.14
+    d_E: 0.04
+    d_TA: 0.01
+    d_TB: 0.01
+    mu_0: 0.05
+    mu_1: 0.089
+    nu: 0.024
+    xi: 0.24
+    alpha_A: 2.0
+    beta_A: 3.0
+    beta_H: 10.0
+    K_H: 0.5
+  initial_conditions:
+    tumor_radius: 0.2
+    tumor_value: 0.1
+    cart_layer: 0.05
+    cart_radius: 0.2
+    cart_value: 0.2
+study:
+  seed: 123
+  lower: 0.6
+  upper: 1.4
+  n_initial: 48
+  n_adaptive_max: 72
+  n_comparator_additional: 72
+  n_validation: 30
+  n_map_checks: 12
+  candidate_pool: 16384
+  comparator_candidate_pool: 32768
+  gp_restarts: 3
+  check_every: 12
+  continue_after_stop: true
+  min_adaptive_before_stop: 24
+  stable_checks: 2
+  sobol_tolerance: 0.02
+  nrmse_tolerance: 0.12
+  regime_accuracy_tolerance: 0.90
+  acquisition_uncertainty_weight: 0.50
+  acquisition_boundary_weight: 0.50
+  sobol_n_base: 16384
+  sobol_bootstrap: 500
+  map_grid_n: 61
+  regimes:
+    c_ctrl: 0.70
+    c_fail: 1.00
+    c_resp: 0.95
+one_factor:
+  enabled: true
+  levels: [0.6, 1.4]
+blind_test:
+  enabled: true
+  n: 30
+  seed: 17123
+  lhs_candidates: 64
+  collision_tolerance: 1.0e-10
